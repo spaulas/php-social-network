@@ -1,6 +1,7 @@
 
 <?php
 
+$root = realpath($_SERVER['DOCUMENT_ROOT']);
 // start session to 'remember' values to be stored accross the different php files
 session_start();
 
@@ -46,47 +47,46 @@ echo <<<_MAIN
 
 _MAIN;
 
-if ($loggedin) {
+if (!$loggedin) {
   echo <<<_LOGGEDIN
         <div class='navBar'>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Home' onclick="location.href = 'pages/members.php?view=$user';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Home' onclick="location.href = 'members.php?view=$user';">
             <img class='navBarIcon' src='/images/home.svg'/>
             <label class='navBarTitle'>
               Home
             </label>
           </button>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Home' onclick="location.href = 'pages/members.php';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Members' onclick="document.location.href='members.php'">
             <img class='navBarIcon' src='/images/members.svg'/>
             <label class='navBarTitle'>
               Members
             </label>
           </button>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Friends' onclick="location.href = 'pages/friends.php';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Friends' onclick="location.href = 'friends.php';">
             <img class='navBarIcon' src='/images/friends.svg'/>
             <label class='navBarTitle'>
               Friends
             </label>
           </button>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Messages' onclick="location.href = 'pages/messages.php';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Messages' onclick="location.href = 'messages.php';">
             <img class='navBarIcon' src='/images/messages.svg'/>
             <label class='navBarTitle'>
               Messages
             </label>
           </button>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Profile' onclick="location.href = 'pages/profile.php';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Profile' onclick="location.href = 'profile.php';">
             <img class='navBarIcon' src='/images/profile.svg'/>
             <label class='navBarTitle'>
               Profile
             </label>
           </button>
-          <button class='navBarButton' data-inline='true' data-transition='slide' title='Log Out' onclick="location.href = 'pages/logout.php';">
+          <button class='navBarButton' data-inline='true' data-transition='slide' title='Log Out' onclick="location.href = 'logout.php';">
             <img class='navBarIcon' src='/images/logout.svg'/>
             <label class='navBarTitle'>
               Log Out
             </label>
           </button>
-        </div>
-        
+        </div>       
 _LOGGEDIN;
 } else {
   // Menu Buttons to Login

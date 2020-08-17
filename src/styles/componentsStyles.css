@@ -28,7 +28,6 @@ img {
   padding: 4px;
 }
 
-
 .center {
   text-align: center;
 }
@@ -116,10 +115,9 @@ img {
 
 .navBarTitle {
   font-size: 18px;
-  color:white;
+  color: white;
   margin-top: calc((42px - 18px - 10px) / 2) !important;
 }
-
 
 .infoMessage {
   font-style: italic;
@@ -128,4 +126,12 @@ img {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.membersTable {
+  width: 100%;
+}
+
+.membersTableHeader {
+  font-size: 1.5rem;
 }
