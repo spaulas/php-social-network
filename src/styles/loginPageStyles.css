@@ -21,3 +21,17 @@
   background-color: #f3afa8 !important;
   color: white !important;
 }
+
+.backHomeButton {
+  width: 78% !important;
+  float: right;
+  height: 50px;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+}
+
+.backHomeButton:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}
