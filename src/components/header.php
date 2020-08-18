@@ -53,37 +53,37 @@ _MAIN;
 
 if ($loggedin) {
   echo "<div class='navBar'>
-          <button class='navBarButton " . ($currentPath === '/members.php?view=' . $user ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Home' onclick=\"location.href = 'members.php?view=$user';\">
+          <button class='navBarButton " . (strpos($currentPath, 'members.php?view=' . $user) ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Home' onclick=\"location.href = 'members.php?view=$user';\">
             <img class='navBarIcon' src='/images/home.svg'/>
             <label class='navBarTitle'>
               Home
             </label>
           </button>
-          <button class='navBarButton " . ($currentPath === '/members.php' ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Members' onclick=\"document.location.href='members.php'\">
+          <button class='navBarButton " . (strpos($currentPath, 'members.php') && !strpos($currentPath, 'view')  ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Members' onclick=\"document.location.href='members.php?page=0'\">
             <img class='navBarIcon' src='/images/members.svg'/>
             <label class='navBarTitle'>
               Members
             </label>
           </button>
-          <button class='navBarButton " . ($currentPath === '/friends.php' ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Friends' onclick=\"location.href = 'friends.php';\">
+          <button class='navBarButton " . (strpos($currentPath, 'friends.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Friends' onclick=\"location.href = 'friends.php';\">
             <img class='navBarIcon' src='/images/friends.svg'/>
             <label class='navBarTitle'>
               Friends
             </label>
           </button>
-          <button class='navBarButton " . ($currentPath === '/messages.php' ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Messages' onclick=\"location.href = 'messages.php';\">
+          <button class='navBarButton " . (strpos($currentPath, 'messages.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Messages' onclick=\"location.href = 'messages.php';\">
             <img class='navBarIcon' src='/images/messages.svg'/>
             <label class='navBarTitle'>
               Messages
             </label>
           </button>
-          <button class='navBarButton " . ($currentPath === '/profile.php' ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Profile' onclick=\"location.href = 'profile.php';\">
+          <button class='navBarButton " . (strpos($currentPath, 'profile.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Profile' onclick=\"location.href = 'profile.php';\">
             <img class='navBarIcon' src='/images/profile.svg'/>
             <label class='navBarTitle'>
               Profile
             </label>
           </button>
-          <button class='navBarButton " . ($currentPath === '/logout.php' ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Log Out' onclick=\"location.href = 'logout.php';\">
+          <button class='navBarButton " . (strpos($currentPath, 'logout.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Log Out' onclick=\"location.href = 'logout.php';\">
             <img class='navBarIcon' src='/images/logout.svg'/>
             <label class='navBarTitle'>
               Log Out

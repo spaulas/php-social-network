@@ -8,6 +8,7 @@
   height: 60px;
   background-color: #ec8074;
   color: white;
+  font-weight: 200 !important;
 }
 
 .statusColumn {
@@ -99,6 +100,10 @@
   line-height: 12px;
   font-size: 14px;
   color: grey !important;
+}
+
+.searchForm {
+  display: flex;
 }
 
 .searchButton {
