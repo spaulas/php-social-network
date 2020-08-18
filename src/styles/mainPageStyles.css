@@ -1,7 +1,7 @@
 .mainPage {
   width: 100%;
   text-align: center;
-  padding-top: calc((50% - 70px - 70px) / 2);
+  margin-top: 10px;
 }
 
 .hideMainButtons {
