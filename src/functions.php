@@ -1,6 +1,6 @@
 <?php
 
-  $dbhost  = 'localhost';
+  $dbhost  = 'localhost:3306';
   $dbname  = 'spaulas';
   $dbuser  = 'spaulas';
   $dbpass  = '2020SpaulaS';
@@ -30,6 +30,8 @@
   function queryMysql($query)
   {
     global $connection;
+    echo "QUERY MY SQL";
+    echo $query;
     $result = $connection->query($query);
 
     if (!$result) {
