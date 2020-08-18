@@ -45,7 +45,7 @@ if (isset($_GET['filter'])) {
 // page
 if (isset($_GET['page'])) {
   $page =  $_GET['page'];
-  if ($page >= 0 && $page < $nPages) {
+  if ($page >= 0) {
     $currentPage = $_GET['page'];
     $finalIndex = ($_GET['page'] + 1) * $pageSize;
   }
@@ -77,6 +77,7 @@ function followingYouAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='members.php?add=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Follow</button>
     <button class='actionsButton' onclick=\"document.location.href='members.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
 }
@@ -104,7 +105,7 @@ $followingYouIcon = "<div class='tooltip'>
   <span class='tooltiptext'>Following you</span>
 </div>";
 
-$bothIcon = "<div class='tooltip'>
+$mutualIcon = "<div class='tooltip'>
   <img class='statusIcons' alt='following' src='/images/mutual.svg'/>
   <span class='tooltiptext'>Mutual Connection</span>
 </div>";
@@ -118,16 +119,18 @@ $result;
 
 switch ($filter) {
   case "none":
-    $result = queryMysql("SELECT * FROM members WHERE members.user LIKE '%$search%' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user = '$user' OR friends.friend = '$user')");
+    $result = queryMysql("SELECT members.user FROM members WHERE members.user NOT IN (SELECT friends.user FROM friends WHERE friends.friend = '$user') AND members.user NOT IN (SELECT friends.friend FROM friends WHERE friends.user = '$user') AND members.user LIKE '%$search'");
     break;
   case "following":
-    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND friends.friend = '$user' AND members.user LIKE '%$search%'");
+    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
+    ) AND members.user LIKE '%$search%'");
     break;
   case "followingYou":
-    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user = '$user' AND friends.friend != '$user' AND members.user LIKE '%$search'");
+    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user') AND members.user LIKE '%$search'");
     break;
   case "mutual":
-    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user = '$user' AND friends.friend = '$user' AND members.user LIKE '%$search%'");
+    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
+    ) AND members.user LIKE '%$search%'");
     break;
   default:
     $result = queryMysql("SELECT user FROM members WHERE (user LIKE '%$search%') ORDER BY user");
@@ -235,7 +238,7 @@ echo "</tbody></table>
 
 echo "<div class='filtersContainer'>
 <form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
-      <input value=$search type='text' name='search' id='search' class='searchInput' />
+      <input value='$search' type='text' name='search' id='search' class='searchInput' />
       <button class='searchButton' type='submit'>
         Search
       </button>

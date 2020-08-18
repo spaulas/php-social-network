@@ -65,7 +65,7 @@ if ($loggedin) {
               Members
             </label>
           </button>
-          <button class='navBarButton " . (strpos($currentPath, 'friends.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Friends' onclick=\"location.href = 'friends.php';\">
+          <button class='navBarButton " . (strpos($currentPath, 'friends.php') ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Friends' onclick=\"location.href = 'friends.php?page=0';\">
             <img class='navBarIcon' src='/images/friends.svg'/>
             <label class='navBarTitle'>
               Friends
