@@ -1,10 +1,9 @@
 <?php
+  session_start();
+  require_once 'components/header.php';
 
-
-require_once "components/header.php";
-echo <<<_END
-  THIS IS THE INDEX PHP
-  </div>
-</body>
+  echo <<<_END
+    </div>
+  </body>
 </html>
 _END;

@@ -1,0 +1,23 @@
+.mainPage {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hideMainButtons {
+  display: none;
+}
+
+.mainPageButton {
+  width: 50% !important;
+  height: 50px;
+  margin: 10px;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+}
+
+.mainPageButton:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}

@@ -1,0 +1,49 @@
+.formContainer {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.loginInput {
+  line-height: 12px;
+  font-size: 14px;
+  color: grey !important;
+}
+
+.ui-input-btn {
+  height: 50px;
+  margin: 10px;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+}
+
+.ui-input-btn:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}
+
+.backHomeButton {
+  width: 78% !important;
+  float: right;
+  height: 50px;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+}
+
+.backHomeButton:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}
+
+.backHomeButtonResultMessage {
+  width: 50% !important;
+  float: unset !important;
+  margin-left: 25%;
+  margin-top: 40px;
+}
+
+.resultMessage {
+  text-align: center;
+  margin-top: 30px;
+}
