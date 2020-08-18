@@ -16,6 +16,7 @@ echo <<<_INIT
     <link rel='stylesheet' href='styles/mainStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/mainPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/loginPageStyles.css' type='text/css'>
+    <link rel='stylesheet' href='styles/membersPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/componentsStyles.css' type='text/css'>
     <script src='javascript/javascript.js'></script>
     <script src='javascript/jquery-2.2.4.min.js'></script>
