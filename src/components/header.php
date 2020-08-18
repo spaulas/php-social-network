@@ -14,6 +14,8 @@ echo <<<_INIT
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='styles/jquery.mobile-1.4.5.min.css'>
     <link rel='stylesheet' href='styles/mainStyles.css' type='text/css'>
+    <link rel='stylesheet' href='styles/mainPageStyles.css' type='text/css'>
+    <link rel='stylesheet' href='styles/loginPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/componentsStyles.css' type='text/css'>
     <script src='javascript/javascript.js'></script>
     <script src='javascript/jquery-2.2.4.min.js'></script>
@@ -48,7 +50,7 @@ echo <<<_MAIN
 _MAIN;
 
 
-if (!$loggedin) {
+if ($loggedin) {
   echo "<div class='navBar'>
           <button class='navBarButton " . ($currentPath === '/members.php?view=' . $user ? 'navBarButtonActive' : '') . "' data-inline='true' data-transition='slide' title='Home' onclick=\"location.href = 'members.php?view=$user';\">
             <img class='navBarIcon' src='/images/home.svg'/>
@@ -89,10 +91,14 @@ if (!$loggedin) {
         </div>";
 } else {
   // Menu Buttons to Login
-  echo <<<_GUEST
-    <div class='center'>
+  echo "
+    <div class='mainPage " . ($currentPath !== '/' ? 'hideMainButtons' : '') . "'>
+      <button class='mainPageButton' data-inline='true' data-transition='slide' title='Login' onclick=\"document.location.href='login.php'\">
+        Login
+      </button>
+      <button class='mainPageButton' data-inline='true' data-transition='slide' title='Sign Up' onclick=\"document.location.href='signUp.php'\">
+        Sign Up
+      </button>
       <p class='infoMessage'>(You must be logged in to use this app)</p>
-    </div>
-        
-_GUEST;
+    </div>";
 }
