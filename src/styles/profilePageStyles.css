@@ -1,0 +1,52 @@
+.profileContainer {
+  width: 100%;
+  display: flex;
+}
+
+.profilePicContainer {
+  width: 40%;
+  padding: 2rem 5%;
+}
+
+.profileAboutForm {
+  width: 40%;
+  padding: 2rem 5%;
+}
+
+.profilePic {
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  max-height: 30rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profileButton {
+  width: 100% !important;
+  height: 50px !important;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+  margin-top: 1rem;
+}
+
+.profileButton:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}
+
+.aboutInput {
+  height: 30rem !important;
+  padding: 0 !important;
+}
+
+.profileTextContainer .ui-input-text {
+  width: 100% !important;
+  height: 30rem !important;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 1px solid #f3afa8 !important;
+  margin-top: 1rem;
+}
