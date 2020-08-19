@@ -30,8 +30,6 @@
   function queryMysql($query)
   {
     global $connection;
-    echo "QUERY MY SQL";
-    echo $query;
     $result = $connection->query($query);
 
     if (!$result) {
