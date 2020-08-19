@@ -237,12 +237,13 @@ echo "</tbody></table>
     </div>";
 
 echo "<div class='filtersContainer'>
-<form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
-      <input value='$search' type='text' name='search' id='search' class='searchInput' />
-      <button class='searchButton' type='submit'>
-        Search
-      </button>
-    </div>";
+        <form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
+          <input value='$search' type='text' name='search' id='search' class='searchInput' />
+          <button class='searchButton' type='submit'>
+            Search
+          </button>
+        </form>
+      </div>";
 
 // link to the previous page
 $backLink = $currentPage > 0 ? "document.location.href='members.php?page=" . ($currentPage - 1) . "&search=" . $search . "&filter=" . $filter . "'" : null;

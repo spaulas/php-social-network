@@ -110,7 +110,6 @@ $nPages  = ceil($num / $pageSize);
 $max    = $num > $finalIndex ? $finalIndex : $num;
 
 $row = $result->fetch_all();
-var_dump($row[1]);
 
 // print table with headers
 echo "<table class='membersTable'>
