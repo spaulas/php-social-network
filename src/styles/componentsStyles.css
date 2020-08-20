@@ -33,6 +33,14 @@
   justify-items: center;
 }
 
+.usernameBar {
+  width: 100%;
+  height: 4rem;
+  background-color: #ec8074;
+  display: flex;
+  justify-items: center;
+}
+
 .navBar {
   width: 100%;
   height: 4rem;

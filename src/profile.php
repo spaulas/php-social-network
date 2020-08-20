@@ -2,7 +2,6 @@
 
 require_once "components/header.php";
 
-
 if (!$loggedin) {
   die("<div class='formContainer'>
 <h2 class='resultMessage'>
