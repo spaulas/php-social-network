@@ -84,7 +84,7 @@ echo <<<_FORM
       <input data-transition='slide' type='submit' value='Sign Up'>
     </div>
   </form>
-  <button class='backHomeButton' onclick="document.location.href='/home.php'">
+  <button class='backHomeButton' onclick="document.location.href='/'">
     Home
   </button>
 </div>

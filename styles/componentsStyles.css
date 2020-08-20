@@ -159,4 +159,15 @@
     padding: 0px;
     margin: 0px;
   }
+
+  .mainDescription {
+    font-size: 1em !important;
+    margin: 2rem 0 2rem 25% !important;
+  }
+
+  .infoMessage {
+    margin: 2rem 0 0 0;
+    position: unset;
+    bottom: unset;
+  }
 }

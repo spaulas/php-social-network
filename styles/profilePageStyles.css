@@ -77,3 +77,22 @@ input {
   display: unset;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 830px) {
+  .profileContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profilePicContainer{
+    width: 70%;
+  }
+
+  .profileAboutForm{
+    width: 70%;
+  }
+
+  .aboutInput {
+    height: 15rem !important;
+  }
+}
