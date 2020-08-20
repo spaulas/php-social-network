@@ -57,7 +57,6 @@ function destroySession()
   // destroy all data registration for the session
   $destroyResult = session_destroy();
   if (session_destroy() === false) {
-    echo "Error destroying the session";
   }
 }
 

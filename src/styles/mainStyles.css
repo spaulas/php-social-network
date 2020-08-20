@@ -12,20 +12,17 @@ html {
   background: #fae5e1;
 }
 
-img {
-  border: 1px solid black;
-  margin-right: 15px;
-  -moz-box-shadow: 2px 2px 2px #888;
-  -webkit-box-shadow: 2px 2px 2px #888;
-  box-shadow: 2px 2px 2px #888;
+.taken,
+.error {
+  color: red;
 }
 
-.username {
-  text-align: center;
-  background: #eb8;
-  color: #40d;
-  font-size: 20pt;
-  padding: 4px;
+.available {
+  color: green;
+}
+
+#used {
+  margin-top: 50px;
 }
 
 .info {
@@ -54,23 +51,6 @@ img {
 .whisper {
   font-style: italic;
   color: #006600;
-}
-
-#logo {
-  background-color: #ec8074;
-  width: 100%;
-  height: 140px;
-  padding-top: 30px;
-}
-
-.titleBox {
-  color: #fae5e1;
-  font-size: 90px;
-  font-weight: 200;
-  border: 2px solid;
-  width: 450px;
-  margin-left: calc((100vw - 450px) / 2);
-  height: 110px;
 }
 
 #robin {

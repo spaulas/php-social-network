@@ -25,7 +25,7 @@ if (isset($_POST['user'])) {
             <h2 class='resultMessage'>
               You are now logged in.
             </h2>
-            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/home.php'\">
               Home
             </button>
           </div>
@@ -58,7 +58,7 @@ echo <<<_FORM
       <input data-transition='slide' type='submit' value='Login'>
     </div>
   </form>
-  <button class='backHomeButton' onclick="document.location.href='/'">
+  <button class='backHomeButton' onclick="document.location.href='/home.php'">
     Home
   </button>
 </div>

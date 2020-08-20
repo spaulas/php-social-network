@@ -3,7 +3,15 @@
 require_once "components/header.php";
 
 if (!$loggedin) {
-  die("</div></body></html>");
+  die("<div class='formContainer'>
+  <h2 class='resultMessage'>
+    You have been logged out.
+  </h2>
+  <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+    Home
+  </button>
+  </div>
+  </div></body></html>");
 }
 
 // pagination variables
@@ -52,6 +60,7 @@ function followingAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
   </div>";
 }
@@ -62,6 +71,7 @@ function followingYouAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
 }
@@ -72,6 +82,7 @@ function mutualAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
@@ -93,15 +104,15 @@ $result;
 
 switch ($filter) {
   case "following":
-    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
     ) AND members.user LIKE '%$search%'");
     break;
   case "mutual":
-    $result = queryMysql("SELECT members.user, members.pass FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
       ) AND members.user LIKE '%$search%'");
     break;
   default:
-    $result = queryMysql("SELECT user FROM members WHERE (user LIKE '%$search%') ORDER BY user");
+    $result = queryMysql("SELECT members.user, members.image FROM members WHERE (user LIKE '%$search%') ORDER BY user");
     break;
 }
 // get the list of all the members
@@ -124,13 +135,18 @@ echo "<table class='membersTable'>
 
 // go through each member to create their respective table row
 for ($j = $currentPage * $pageSize; $j < $max; $j++) {
+  if ($row[$j][1] != '') {
+    $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
+  } else {
+    $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
+  }
   if ($row[$j][0] == $user) {
     echo "<tr class='membersTableRow'>
       <td class='membersTableElem statusColumn'/>
       <td class='membersTableElem nameColumn'>
         <div class='profileRowContainer'>
-          <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-          <div class='profileTableName'>" . $row[$j][0] . "</div>
+          $profileIcon
+          <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
         </div>  
       </td>
       <td class='membersTableElem actionColumn'/>
@@ -165,7 +181,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   <td class='membersTableElem nameColumn'>
     <div class='profileRowContainer'>
       <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-      <div class='profileTableName'>" . $row[$j][0] . "</div>
+      <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
     </div>  
   </td>
   <td class='membersTableElem actionColumn'>$connectionAction</td>

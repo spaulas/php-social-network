@@ -3,7 +3,25 @@
 require_once "components/header.php";
 
 
-if (!$loggedin) die("</div></body></html>");
+if (!$loggedin) {
+  die("<div class='formContainer'>
+<h2 class='resultMessage'>
+You have been logged out.
+</h2>
+<button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+Home
+</button>
+</div>
+</div></body></html>");
+}
+if (!isset($_GET['user'])) {
+  echo "no user selected";
+  die();
+}
+
+$loggedInUser = $_SESSION['user'];
+
+$user = $_GET['user'];
 $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
 
 // handle a text change
@@ -23,6 +41,7 @@ if (isset($_POST['text'])) {
     // set image to empty
     $image = '';
     queryMysql("INSERT INTO profiles VALUES('$user', '$text', '')");
+    queryMysql("UPDATE members SET image='' where user='$user'");
   }
 } elseif (isset($_POST['image'])) {
   $image = $_POST['image'];
@@ -34,6 +53,7 @@ if (isset($_POST['text'])) {
     $row  = $result->fetch_array(MYSQLI_ASSOC);
     $text = stripslashes($row['text']);
     queryMysql("UPDATE profiles SET image='$image' where user='$user'");
+    queryMysql("UPDATE members SET image='$image' where user='$user'");
   }
   // if no row exists, then create it with no text
   else {
@@ -59,20 +79,32 @@ if ($image != "") {
   $profilePic = "<img class='profilePic' alt='' src='/images/noPicture.svg'/>";
 }
 
-echo "<div class='profileContainer'>
-        <form class='profilePicContainer' method='post' action='profile.php'>
+$submitButton = "";
+$disableInput = 'disabled';
+$sendMessageButton = "<button class='profileButton sendMessageButton' onclick=\"location.href ='messages.php?view=$user'\">Send a Message</button>";
+
+if ($loggedInUser == $user) {
+  $disableInput  = "";
+  $submitButton = "<button class='profileButton' type='submit'>Save</button>";
+  $sendMessageButton = "";
+}
+
+echo "<div class='profileNameContainer'>
+        <label class='profileName'>$user</label>
+      </div>
+      <div class='profileContainer'>
+        <form class='profilePicContainer' method='post' action='profile.php?user=$user'>
           $profilePic
-          <input type='text' name='image' id='image' value='$image' />
-          <button class='profileButton' type='submit'>
-            Save Picture
-          </button>
+          <input $disableInput type='text' name='image' id='image' value='$image' />
+          $submitButton
         </form>
-        <form class='profileTextContainer' data-ajax='false' method='post' action='profile.php' enctype='multipart/form-data'>
-          <textarea type='text' name='text' id='text' class='aboutInput' >
+        <form class='profileAboutForm' data-ajax='false' method='post' action='profile.php?user=$user' enctype='multipart/form-data'>
+          <textarea $disableInput type='text' name='text' id='text' class='aboutInput' >
             " . stripslashes($text) . "
           </textarea>            
-          <button class='profileButton' type='submit'>
-            Save Text
-          </button>
+          $submitButton
         </form>
-  </div>";
+      </div>
+      <div class='profileNameContainer'>
+        $sendMessageButton
+      </div>";
