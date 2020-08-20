@@ -67,8 +67,16 @@ if ($image != "") {
   $profilePic = "<img class='profilePic' alt='' src='/images/noPicture.svg'/>";
 }
 
-$submitButton = $loggedInUser == $user ? "<button class='profileButton' type='submit'>Save Picture</button>" : "";
-$disableInput = $loggedInUser == $user ? '' : 'disabled';
+
+$submitButton = "";
+$disableInput = 'disabled';
+$sendMessageButton = "<button class='profileButton sendMessageButton' onclick=\"location.href ='messages.php?view=$user'\">Send a Message</button>";
+
+if ($loggedInUser == $user) {
+  $disableInput  = "";
+  $submitButton = "<button class='profileButton' type='submit'>Save Picture</button>";
+  $sendMessageButton = "";
+}
 
 echo "<div class='profileNameContainer'>
         <label class='profileName'>$user</label>
@@ -85,4 +93,7 @@ echo "<div class='profileNameContainer'>
           </textarea>            
           $submitButton
         </form>
-  </div>";
+      </div>
+      <div class='profileNameContainer'>
+        $sendMessageButton
+      </div>";

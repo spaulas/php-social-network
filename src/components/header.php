@@ -18,6 +18,7 @@ echo <<<_INIT
     <link rel='stylesheet' href='styles/loginPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/membersPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/profilePageStyles.css' type='text/css'>
+    <link rel='stylesheet' href='styles/messagesPageStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/componentsStyles.css' type='text/css'>
     <script src='javascript/javascript.js'></script>
     <script src='javascript/jquery-2.2.4.min.js'></script>
@@ -55,7 +56,7 @@ _MAIN;
 if ($loggedin) {
   echo "<div class='usernameBar'>
           <label class='navBarTitle'>
-            $user
+            Welcome, $user
           </label>
         </div>
         <div class='navBar'>

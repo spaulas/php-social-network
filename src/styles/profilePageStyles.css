@@ -53,7 +53,8 @@
   padding: 0 !important;
 }
 
-textarea, input {
+textarea,
+input {
   width: 100% !important;
   height: 30rem !important;
   background-color: white !important;
@@ -68,4 +69,10 @@ textarea, input {
 
 input {
   height: 2.5em !important;
+}
+
+.sendMessageButton {
+  width: 50% !important;
+  display: unset;
+  margin-bottom: 1rem;
 }
