@@ -27,6 +27,7 @@
               pm CHAR(1),
               time INT UNSIGNED,
               message VARCHAR(4096),
+              answerto VARCHAR(16),
               INDEX(auth(6)),
               INDEX(recip(6))'
   );

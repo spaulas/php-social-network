@@ -1,0 +1,155 @@
+.noMessagesYet {
+  width: 100% !important;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1em;
+  color: #ec8074;
+  font-style: italic;
+}
+
+.messagesFrom {
+  width: 100% !important;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2em;
+  color: #ec8074;
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  margin: 1rem 1rem 0 1rem;
+  height: 3rem;
+  width: 80% !important;
+}
+
+.messageInfoLabel {
+  font-size: 1em;
+  color: #ec8074;
+  font-weight: bold !important;
+  display: unset;
+}
+
+.radioContainer {
+  margin-left: auto;
+}
+
+.radioContainer > fieldset {
+  border-radius: 0 !important;
+  border: none !important;
+  display: unset !important;
+  margin: 0 !important;
+  height: 2rem !important;
+}
+
+.ui-btn-active {
+  background-color: #ec8074 !important;
+  border: 0.1rem solid #ec8074 !important;
+  height: 1.2rem !important;
+  font-size: 0.8em !important;
+  font-family: "Manrope" !important;
+  padding: 0.4rem !important;
+}
+
+.ui-radio-off {
+  background-color: white !important;
+  color: #ec8074 !important;
+  border: 0.1rem solid #ec8074 !important;
+  height: 1.2rem !important;
+  font-size: 0.8em !important;
+  font-family: "Manrope" !important;
+  padding: 0.4rem !important;
+}
+
+.radioButtonNone {
+  display: none;
+}
+
+.messageForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.messageForm > textarea {
+  width: 80% !important;
+  height: 10rem !important;
+}
+
+.sendMessageButton {
+  width: 80% !important;
+  height: 3rem !important;
+  background-color: white !important;
+  color: #f3afa8 !important;
+  border: 0.1rem solid #f3afa8 !important;
+  margin-top: 1rem;
+}
+
+.sendMessageButton:hover {
+  background-color: #f3afa8 !important;
+  color: white !important;
+}
+
+.refreshMessages {
+  margin-left: 10%;
+  margin-top: 4rem;
+}
+
+.oldMessageHeader {
+  display: flex;
+  align-items: center;
+  margin: 1rem 1rem 0 1rem;
+  height: 3rem;
+  width: 80% !important;
+  margin-left: 10% !important;
+}
+
+.messageType {
+  width: auto !important;
+  margin-right: 1rem !important;
+}
+
+.messageDate {
+  margin-left: auto !important;
+}
+
+.oldMessageField {
+  word-break: break-all;
+  width: calc(80% - 4rem) !important;
+  margin-left: 10% !important;
+  margin-bottom: 0.5rem;
+  border: 0.1rem solid #f3afa8 !important;
+  border-radius: 0.3125em;
+  padding: 1rem 3rem 1rem 1rem;
+  color: grey !important;
+}
+
+.buttonReply {
+  position: absolute;
+  right: 10%;
+  margin-top: -3rem;
+  width: 8% !important;
+}
+
+.replyMessageForm > textarea {
+  margin-left: 10% !important;
+  width: 70% !important;
+  height: 3rem !important;
+  margin-top: 2rem !important;
+}
+
+.answerDiff {
+  margin-left: 5%;
+  margin-top: -1rem;
+}
+
+.deleteMessage {
+  height: 2rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+  margin-top: -3.5rem;
+}

@@ -52,6 +52,7 @@ function followingAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
   </div>";
 }
@@ -62,6 +63,7 @@ function followingYouAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
 }
@@ -72,6 +74,7 @@ function mutualAction($rowUser)
   global $search;
   global $filter;
   return "<div class='actionsContainer'>
+    <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
     <button class='actionsButton' onclick=\"document.location.href='friends.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
@@ -130,7 +133,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
       <td class='membersTableElem nameColumn'>
         <div class='profileRowContainer'>
           <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-          <div class='profileTableName'>" . $row[$j][0] . "</div>
+          <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
         </div>  
       </td>
       <td class='membersTableElem actionColumn'/>
@@ -165,7 +168,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   <td class='membersTableElem nameColumn'>
     <div class='profileRowContainer'>
       <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-      <div class='profileTableName'>" . $row[$j][0] . "</div>
+      <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
     </div>  
   </td>
   <td class='membersTableElem actionColumn'>$connectionAction</td>
