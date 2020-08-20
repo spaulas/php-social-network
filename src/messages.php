@@ -34,7 +34,6 @@ if (isset($_GET['erase'])) {
   $eraseAll = clearString($_GET['eraseAll']);
 
   if ($eraseAll == 1) {
-    echo "deleting all!";
     queryMysql("DELETE FROM messages WHERE id=$erase OR answerto=$erase");
   } else {
     queryMysql("DELETE FROM messages WHERE id=$erase");
@@ -42,14 +41,16 @@ if (isset($_GET['erase'])) {
 }
 
 // get all the user's previous messages
-$query  = "SELECT * FROM messages WHERE ((auth='$user' OR recip='$user') AND answerto IS NULL) ORDER BY time DESC";
+$query  = "SELECT * FROM messages WHERE ((auth='$user' OR recip='$user') AND (auth='$receiver' OR recip='$receiver') AND answerto IS NULL) ORDER BY time DESC";
 $mainMessages = queryMysql($query);
 $num    = $mainMessages->num_rows;
 
 if ($user == $receiver) {
   $messageInfoLabel = "<label class='messageInfoLabel'>From $user</label>";
+  $messagesFrom = "<label class='messagesFrom'>All Messages</label>";
 } else {
   $messageInfoLabel = "<label class='messageInfoLabel'>From $user to $receiver</label>";
+  $messagesFrom = "<label class='messagesFrom'>Messages between you and $receiver</label>";
 }
 
 echo "<div class='sendMessageContainer'>
@@ -68,6 +69,7 @@ echo "<div class='sendMessageContainer'>
       <textarea name='text'></textarea>
       <button class='sendMessageButton' type='submit'>Post Message</button>
     </form>
+    $messagesFrom
   </div>";
 
 function printOldMessage($isMainMessage, $author, $dest, $mType, $time, $message, $id)
@@ -81,10 +83,10 @@ function printOldMessage($isMainMessage, $author, $dest, $mType, $time, $message
     $oldMessageInfoLabel = "<label class='messageInfoLabel author'>From $author to $dest</label>";
   }
 
-  if ($mType) {
-    $oldMessageTypeLabel = "<label class='messageInfoLabel messageType'>Public</label>";
-  } else {
+  if ($mType == 1) {
     $oldMessageTypeLabel = "<label class='messageInfoLabel messageType'>Private</label>";
+  } else {
+    $oldMessageTypeLabel = "<label class='messageInfoLabel messageType'>Public</label>";
   }
 
   $oldMessageTime = "<label class='messageInfoLabel messageDate'>" . date('M jS \'y g:ia', $time) . "</label>";
@@ -142,7 +144,7 @@ if (!$num) {
   }
 }
 
-echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='messages.php?view=$view' \">Refresh messages</button>";
+echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='messages.php?view=$view' \">Refresh Messages</button>";
 
 ?>
 

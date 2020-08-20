@@ -67,7 +67,6 @@ if ($image != "") {
   $profilePic = "<img class='profilePic' alt='' src='/images/noPicture.svg'/>";
 }
 
-
 $submitButton = "";
 $disableInput = 'disabled';
 $sendMessageButton = "<button class='profileButton sendMessageButton' onclick=\"location.href ='messages.php?view=$user'\">Send a Message</button>";

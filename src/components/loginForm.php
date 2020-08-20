@@ -26,7 +26,7 @@ echo <<<_FORM
       <input data-transition='slide' type='submit' value='Login'>
     </div>
   </form>
-  <button class='backHomeButton' onclick="document.location.href='/'">
+  <button class='backHomeButton' onclick="document.location.href='/home.php'">
     Home
   </button>
 </div>

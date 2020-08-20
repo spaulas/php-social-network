@@ -60,7 +60,7 @@ if ($loggedin) {
           </label>
         </div>
         <div class='navBar'>
-          <button class='navBarButton " . (strpos($currentPath, 'members.php?view=' . $user) ? '' : 'navBarButtonNotActive') . "' data-inline='true' data-transition='slide' title='Home' onclick=\"location.href = 'members.php?view=$user';\">
+          <button class='navBarButton " . (strpos($currentPath, 'home.php') ? '' : 'navBarButtonNotActive') . "' data-inline='true' data-transition='slide' title='Home' onclick=\"location.href = 'home.php';\">
             <img class='navBarIcon' src='images/home.svg'/>
             <label class='navBarTitle'>
               Home
