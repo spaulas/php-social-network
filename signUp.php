@@ -51,7 +51,7 @@ if (isset($_POST['user'])) {
             <h4 class='resultMessage'>
               Please Log in.
             </h4>
-            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/home.php'\">
+            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
               Home
             </button>
           </div>
