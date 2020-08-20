@@ -25,7 +25,7 @@ if (isset($_POST['user'])) {
             <h2 class='resultMessage'>
               You are now logged in.
             </h2>
-            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/home.php'\">
+            <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
               Home
             </button>
           </div>
