@@ -1,13 +1,15 @@
 <?php
 
-$dbhost  = 'u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
-$dbname  = 'g0r2b2lr88uxlmox';
-$dbuser  = 'z4adbn7gmyi6w8u1';
-$dbpass  = 'tsgyog8z97dgdnhf';
-$port    = '3306';
+$url = getenv('mysql://g0r2b2lr88uxlmox:tsgyog8z97dgdnhf@u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/z4adbn7gmyi6w8u1');
+$dbparts = parse_url($url);
+
+$dbhost = $dbparts['host'];
+$dbuser = $dbparts['user'];
+$dbpass = $dbparts['pass'];
+$dbname = ltrim($dbparts['path'],'/');
 
 // global variable with the stabilished connection with the database
-$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname, $port);
+$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 // if an error happened, kill the application
 if ($connection->connect_error) {
   die("Fatal Error");
