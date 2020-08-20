@@ -44,21 +44,23 @@
 
 .ui-btn-active {
   background-color: #ec8074 !important;
-  border: 0.1rem solid #ec8074 !important;
+  border: none !important;
   height: 1.2rem !important;
   font-size: 0.8em !important;
   font-family: "Manrope" !important;
   padding: 0.4rem !important;
+  text-shadow: none !important;
 }
 
 .ui-radio-off {
   background-color: white !important;
   color: #ec8074 !important;
-  border: 0.1rem solid #ec8074 !important;
+  border: none !important;
   height: 1.2rem !important;
   font-size: 0.8em !important;
   font-family: "Manrope" !important;
   padding: 0.4rem !important;
+  text-shadow: none !important;
 }
 
 .radioButtonNone {
@@ -83,6 +85,7 @@
   color: #f3afa8 !important;
   border: 0.1rem solid #f3afa8 !important;
   margin-top: 1rem;
+  font-size: 1em;
 }
 
 .sendMessageButton:hover {
@@ -122,11 +125,12 @@
   border-radius: 0.3125em;
   padding: 1rem 3rem 1rem 1rem;
   color: grey !important;
+  font-size: 1em;
 }
 
 .buttonReply {
   position: absolute;
-  right: 10%;
+  right: 9.8%;
   margin-top: -3rem;
   width: 8% !important;
 }
@@ -139,7 +143,7 @@
 }
 
 .answerDiff {
-  margin-left: 5%;
+  margin-left: 2%;
   margin-top: -1rem;
 }
 
@@ -152,4 +156,24 @@
   position: absolute;
   right: 10%;
   margin-top: -3.5rem;
+}
+
+@media screen and (max-width: 830px) {
+  .messageInfoLabel {
+    font-size: 0.7em !important;
+  }
+
+  .oldMessageField {
+    font-size: 0.8em !important;
+    margin-top: 0.5rem;
+  }
+
+  .buttonReply {
+    width: 21% !important;
+    font-size: 0.7em !important;
+  }
+
+  .sendMessageButton {
+    font-size: 0.7em !important;
+  }
 }

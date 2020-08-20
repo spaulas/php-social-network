@@ -12,20 +12,17 @@ html {
   background: #fae5e1;
 }
 
-img {
-  border: 1px solid black;
-  margin-right: 15px;
-  -moz-box-shadow: 2px 2px 2px #888;
-  -webkit-box-shadow: 2px 2px 2px #888;
-  box-shadow: 2px 2px 2px #888;
+.taken,
+.error {
+  color: red;
 }
 
-.username {
-  text-align: center;
-  background: #eb8;
-  color: #40d;
-  font-size: 20pt;
-  padding: 4px;
+.available {
+  color: green;
+}
+
+#used {
+  margin-top: 50px;
 }
 
 .info {

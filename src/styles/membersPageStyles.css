@@ -24,7 +24,7 @@
 .membersTableRow {
   width: 50%;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   height: 40px;
   background-color: white;
   color: #f3afa8;
@@ -57,14 +57,14 @@
 }
 
 .statusIcons {
-  height: 60px;
+  height: 4rem;
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
 .profileTableImage {
-  height: 60px;
+  height: 4rem;
   width: 50px;
   background-color: transparent !important;
   border: none !important;
@@ -74,9 +74,11 @@
 .profileRowContainer {
   display: flex;
   justify-content: space-around;
+  margin: 0.2rem;
 }
 
 .profileTableName {
+  font-size: 1em !important;
   width: calc(90% - 50px);
   line-height: 60px;
   cursor: pointer;
@@ -89,6 +91,7 @@
   height: 50px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .filtersContainer {
@@ -131,7 +134,7 @@
 }
 
 .filterOption {
-  height: 30px;
+  height: 2.5rem;
   margin: 10px 2px;
   background-color: transparent !important;
   border: none !important;
@@ -179,4 +182,41 @@
   border: none;
   box-shadow: none;
   filter: invert(1) brightness(150%);
+}
+
+@media screen and (max-width: 830px) {
+  .membersTable {
+    width: 100vw;
+    display: block !important;
+    overflow-x: scroll;
+  }
+
+  .statusColumn {
+    width: 5rem;
+  }
+  .nameColumn {
+    width: 20rem;
+    min-width: 250px;
+  }
+  .actionColumn {
+    min-width: 330px;
+    width: 26rem;
+  }
+
+  .membersTableHeaderTitle {
+    font-size: 1.2rem !important;
+  }
+
+  .profileTableName {
+    font-size: 0.8em !important;
+  }
+
+  .statusIcons {
+    height: 2.5rem !important;
+  }
+
+  .optionsContainer {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
 }

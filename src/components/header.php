@@ -43,7 +43,7 @@ echo <<<_MAIN
   <body>
     <div data-role='page'>
       <div data-role='header' class='header'>
-        <div id='logo' class='center'>
+        <div id='logo'>
           <div class='titleBox'>
             SOCIAL NETWORK
           </div>
@@ -55,7 +55,7 @@ _MAIN;
 
 if ($loggedin) {
   echo "<div class='usernameBar'>
-          <label class='navBarTitle'>
+          <label class='navBarTitle navBarUserTitle'>
             Welcome, $user
           </label>
         </div>
@@ -101,6 +101,7 @@ if ($loggedin) {
   // Menu Buttons to Login
   echo "
     <div class='mainPage " . ($currentPath !== '/' ? 'hideMainButtons' : '') . "'>
+      <label class='mainDescription'>Connect with your friends in a whole new level</label>
       <button class='mainPageButton' data-inline='true' data-transition='slide' title='Login' onclick=\"document.location.href='login.php'\">
         Login
       </button>

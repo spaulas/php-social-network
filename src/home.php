@@ -1,7 +1,15 @@
 <?php
 require_once 'components/header.php';
 
-if (!$loggedin) die("</div></body></html>");
+if (!$loggedin) die("<div class='formContainer'>
+<h2 class='resultMessage'>
+  You have been logged out.
+</h2>
+<button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+  Home
+</button>
+</div>
+</div></body></html>");
 
 // post a message
 if (isset($_POST['text'])) {
@@ -35,7 +43,8 @@ if (isset($_GET['erase'])) {
 }
 
 // get all the user's previous messages
-$query  = "SELECT * FROM messages WHERE pm='0' AND answerto IS NULL ORDER BY time DESC";
+$query  = "(SELECT id, auth, recip, pm, time, message, answerto FROM messages INNER JOIN friends ON messages.auth = friends.user WHERE friends.friend = '$user' AND messages.pm='0' AND messages.answerto IS NULL ORDER BY time DESC) UNION (SELECT * FROM messages WHERE auth='$user' AND messages.pm='0' AND messages.answerto IS NULL ORDER BY time DESC)";
+
 $mainMessages = queryMysql($query);
 $num    = $mainMessages->num_rows;
 

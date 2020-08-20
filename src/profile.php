@@ -2,8 +2,17 @@
 
 require_once "components/header.php";
 
-
-if (!$loggedin) die("</div></body></html>");
+if (!$loggedin) {
+  die("<div class='formContainer'>
+<h2 class='resultMessage'>
+You have been logged out.
+</h2>
+<button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+Home
+</button>
+</div>
+</div></body></html>");
+}
 if (!isset($_GET['user'])) {
   echo "no user selected";
   die();
@@ -31,6 +40,7 @@ if (isset($_POST['text'])) {
     // set image to empty
     $image = '';
     queryMysql("INSERT INTO profiles VALUES('$user', '$text', '')");
+    queryMysql("UPDATE members SET image='' where user='$user'");
   }
 } elseif (isset($_POST['image'])) {
   $image = $_POST['image'];
@@ -42,6 +52,7 @@ if (isset($_POST['text'])) {
     $row  = $result->fetch_array(MYSQLI_ASSOC);
     $text = stripslashes($row['text']);
     queryMysql("UPDATE profiles SET image='$image' where user='$user'");
+    queryMysql("UPDATE members SET image='$image' where user='$user'");
   }
   // if no row exists, then create it with no text
   else {
@@ -73,7 +84,7 @@ $sendMessageButton = "<button class='profileButton sendMessageButton' onclick=\"
 
 if ($loggedInUser == $user) {
   $disableInput  = "";
-  $submitButton = "<button class='profileButton' type='submit'>Save Picture</button>";
+  $submitButton = "<button class='profileButton' type='submit'>Save</button>";
   $sendMessageButton = "";
 }
 

@@ -16,6 +16,7 @@
     'members',
     'user VARCHAR(16),
               pass VARCHAR(16),
+              image VARCHAR(4096),
               INDEX(user(6))'
   );
 
@@ -44,7 +45,7 @@
     'profiles',
     'user VARCHAR(16),
               text VARCHAR(4096),
-              image VARCHAR(8192),
+              image VARCHAR(4096),
               INDEX(user(6))'
   );
   ?>

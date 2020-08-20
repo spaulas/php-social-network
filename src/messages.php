@@ -1,7 +1,17 @@
 <?php
 require_once 'components/header.php';
 
-if (!$loggedin) die("</div></body></html>");
+if (!$loggedin) {
+  die("<div class='formContainer'>
+<h2 class='resultMessage'>
+  You have been logged out.
+</h2>
+<button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
+  Home
+</button>
+</div>
+</div></body></html>");
+}
 
 // get the receiver
 if (isset($_GET['view'])) $receiver = clearString($_GET['view']);
