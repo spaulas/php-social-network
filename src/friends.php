@@ -130,7 +130,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
       <td class='membersTableElem nameColumn'>
         <div class='profileRowContainer'>
           <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-          <div class='profileTableName'>" . $row[$j][0] . "</div>
+          <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
         </div>  
       </td>
       <td class='membersTableElem actionColumn'/>
@@ -165,7 +165,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   <td class='membersTableElem nameColumn'>
     <div class='profileRowContainer'>
       <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
-      <div class='profileTableName'>" . $row[$j][0] . "</div>
+      <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
     </div>  
   </td>
   <td class='membersTableElem actionColumn'>$connectionAction</td>

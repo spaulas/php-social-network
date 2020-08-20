@@ -68,18 +68,19 @@ if ($image != "") {
 }
 
 $submitButton = $loggedInUser == $user ? "<button class='profileButton' type='submit'>Save Picture</button>" : "";
+$disableInput = $loggedInUser == $user ? '' : 'disabled';
 
 echo "<div class='profileNameContainer'>
         <label class='profileName'>$user</label>
       </div>
       <div class='profileContainer'>
-        <form class='profilePicContainer' method='post' action='profile.php'>
+        <form class='profilePicContainer' method='post' action='profile.php?user=$user'>
           $profilePic
-          <input type='text' name='image' id='image' value='$image' />
+          <input $disableInput type='text' name='image' id='image' value='$image' />
           $submitButton
         </form>
-        <form class='profileTextContainer' data-ajax='false' method='post' action='profile.php' enctype='multipart/form-data'>
-          <textarea type='text' name='text' id='text' class='aboutInput' >
+        <form class='profileAboutForm' data-ajax='false' method='post' action='profile.php?user=$user' enctype='multipart/form-data'>
+          <textarea $disableInput type='text' name='text' id='text' class='aboutInput' >
             " . stripslashes($text) . "
           </textarea>            
           $submitButton

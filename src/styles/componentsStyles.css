@@ -50,7 +50,6 @@ img {
   color: #006600;
 }
 
-
 #logo {
   background-color: #ec8074;
   width: 100%;
@@ -58,6 +57,7 @@ img {
   padding: 1rem 0;
   justify-content: center;
   align-items: center;
+  display: flex;
 }
 
 .titleBox {
