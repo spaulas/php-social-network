@@ -11,7 +11,16 @@ echo <<<_INIT
   <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+    <meta property='og:type' content='website'/>
+    <meta property='og:image' content='https://i.ibb.co/DW6bxc3/Social-Network-Image.png'/>
+    <meta property='og:image:type' content='image/png'/>
+    <meta property='og:image:width' content='1200'/>
+    <meta property='og:image:width' content='1200'/>
+    <meta property='og:image:alt' content='Php Social Network'/>
+    <meta property='og:title' content='PHP Social Network'/>
+    <meta property='og:description' content='Connect with your friends, exchange messages, and create your profile all in PHP'/>
+    <meta property='og:url' content='https://php-social-network.herokuapp.com/'/>
+    <link href=-https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet'>
     <link rel='stylesheet' href='styles/jquery.mobile-1.4.5.min.css'>
     <link rel='stylesheet' href='styles/mainStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/mainPageStyles.css' type='text/css'>
