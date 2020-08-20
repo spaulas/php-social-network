@@ -56,23 +56,6 @@ img {
   color: #006600;
 }
 
-#logo {
-  background-color: #ec8074;
-  width: 100%;
-  height: 140px;
-  padding-top: 30px;
-}
-
-.titleBox {
-  color: #fae5e1;
-  font-size: 90px;
-  font-weight: 200;
-  border: 2px solid;
-  width: 450px;
-  margin-left: calc((100vw - 450px) / 2);
-  height: 110px;
-}
-
 #robin {
   position: relative;
   border: 0px;

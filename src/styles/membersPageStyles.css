@@ -78,6 +78,7 @@
 .profileTableName {
   width: calc(90% - 50px);
   line-height: 60px;
+  cursor: pointer;
 }
 
 /* table options */
