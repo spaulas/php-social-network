@@ -20,7 +20,7 @@ echo <<<_INIT
     <meta property='og:title' content='PHP Social Network'>
     <meta property='og:description' content='Connect with your friends, exchange messages, and create your profile all in PHP'>
     <meta property='og:url' content='https://php-social-network.herokuapp.com/'>
-    <link href=-https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet'>
+    <link href='-https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap' rel='stylesheet'>
     <link rel='stylesheet' href='styles/jquery.mobile-1.4.5.min.css'>
     <link rel='stylesheet' href='styles/mainStyles.css' type='text/css'>
     <link rel='stylesheet' href='styles/mainPageStyles.css' type='text/css'>
