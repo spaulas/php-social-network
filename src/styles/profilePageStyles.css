@@ -1,3 +1,13 @@
+.profileNameContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.profileName {
+  font-size: 1.2rem !important;
+  color: #ec8074 !important;
+}
+
 .profileContainer {
   width: 100%;
   display: flex;

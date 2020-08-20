@@ -4,6 +4,14 @@ require_once "components/header.php";
 
 
 if (!$loggedin) die("</div></body></html>");
+if (!isset($_GET['user'])) {
+  echo "no user selected";
+  die();
+}
+
+$loggedInUser = $_SESSION['user'];
+
+$user = $_GET['user'];
 $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
 
 // handle a text change
@@ -59,20 +67,21 @@ if ($image != "") {
   $profilePic = "<img class='profilePic' alt='' src='/images/noPicture.svg'/>";
 }
 
-echo "<div class='profileContainer'>
+$submitButton = $loggedInUser == $user ? "<button class='profileButton' type='submit'>Save Picture</button>" : "";
+
+echo "<div class='profileNameContainer'>
+        <label class='profileName'>$user</label>
+      </div>
+      <div class='profileContainer'>
         <form class='profilePicContainer' method='post' action='profile.php'>
           $profilePic
           <input type='text' name='image' id='image' value='$image' />
-          <button class='profileButton' type='submit'>
-            Save Picture
-          </button>
+          $submitButton
         </form>
         <form class='profileTextContainer' data-ajax='false' method='post' action='profile.php' enctype='multipart/form-data'>
           <textarea type='text' name='text' id='text' class='aboutInput' >
             " . stripslashes($text) . "
           </textarea>            
-          <button class='profileButton' type='submit'>
-            Save Text
-          </button>
+          $submitButton
         </form>
   </div>";
