@@ -12,6 +12,10 @@ html {
   background: #fae5e1;
 }
 
+ui-page {
+  overflow-y: hidden !important;
+}
+
 .taken,
 .error {
   color: red;
