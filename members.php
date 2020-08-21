@@ -134,15 +134,14 @@ switch ($filter) {
     $result = queryMysql("SELECT members.user, members.image FROM members WHERE members.user NOT IN (SELECT friends.user FROM friends WHERE friends.friend = '$user') AND members.user NOT IN (SELECT friends.friend FROM friends WHERE friends.user = '$user') AND members.user LIKE '%$search'");
     break;
   case "following":
-    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user'
     ) AND members.user LIKE '%$search%'");
     break;
   case "followingYou":
-    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user') AND members.user LIKE '%$search'");
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user') AND members.user LIKE '%$search%'");
     break;
   case "mutual":
-    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.user != '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.friend != '$user'
-    ) AND members.user LIKE '%$search%'");
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user') AND members.user LIKE '%$search%'");
     break;
   default:
     $result = queryMysql("SELECT members.user, members.image FROM members WHERE (user LIKE '%$search%') ORDER BY user");

@@ -43,7 +43,7 @@ if (isset($_GET['erase'])) {
 }
 
 // get all the user's previous messages
-$query  = "(SELECT id, auth, recip, pm, time, message, answerto FROM messages INNER JOIN friends ON messages.auth = friends.user WHERE friends.friend = '$user' AND messages.pm='0' AND messages.answerto IS NULL ORDER BY time DESC) UNION (SELECT * FROM messages WHERE auth='$user' AND messages.pm='0' AND messages.answerto IS NULL ORDER BY time DESC)";
+$query  = "(SELECT id, auth, recip, pm, time, message, answerto FROM messages INNER JOIN friends ON messages.auth = friends.user WHERE friends.friend = '$user' AND messages.pm='0' AND messages.answerto IS NULL) UNION (SELECT * FROM messages WHERE auth='$user' AND messages.pm='0' AND messages.answerto IS NULL) ORDER BY time DESC";
 
 $mainMessages = queryMysql($query);
 $num    = $mainMessages->num_rows;
@@ -52,7 +52,7 @@ $messageInfoLabel = "<label class='messageInfoLabel'>From $user</label>";
 
 
 echo "<div class='sendMessageContainer'>
-    <form class='messageForm' method='post' action='messages.php'>
+    <form class='messageForm' method='post' action='home.php'>
       <div class='messageHeader'>
         $messageInfoLabel
         <div class='radioContainer'>
@@ -89,9 +89,9 @@ function printOldMessage($isMainMessage, $author, $dest, $mType, $time, $message
 
   if ($user == $author) {
     if ($isMainMessage) {
-      $deleteButton = "<img src='images/delete.svg' class='deleteMessage' onclick=\"location.href='messages.php?erase=$id&eraseAll=1' \">";
+      $deleteButton = "<img src='images/delete.svg' class='deleteMessage' onclick=\"location.href='home.php?erase=$id&eraseAll=1' \">";
     } else {
-      $deleteButton = "<img src='images/delete.svg' class='deleteMessage' onclick=\"location.href='messages.php?erase=$id&eraseAll=0' \">";
+      $deleteButton = "<img src='images/delete.svg' class='deleteMessage' onclick=\"location.href='home.php?erase=$id&eraseAll=0' \">";
     }
   } else {
     $deleteButton = "";
@@ -131,14 +131,14 @@ if (!$num) {
     }
 
     // add extra field to respond to the post
-    echo "<form class='answerDiff replyMessageForm' method='post' action='messages.php?reply=" . $row['id'] . "&replyTo=" . $row['auth'] . "&pm=" . $row['pm'] . "'>
+    echo "<form class='answerDiff replyMessageForm' method='post' action='home.php?reply=" . $row['id'] . "&replyTo=" . $row['auth'] . "&pm=" . $row['pm'] . "'>
             <textarea name='text'></textarea>
             <button class='sendMessageButton buttonReply'>Reply</button>
           </form>";
   }
 }
 
-echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='messages.php' \">Refresh Posts</button>";
+echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='home.php' \">Refresh Posts</button>";
 
 ?>
 
