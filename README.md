@@ -51,13 +51,78 @@ $port   = 3306;
 <ul>
   <li>members:
     <ul>
-      <li>user  VARCHAR(16) - PRIMARY KEY;</li>
-      <li>pass  VARCHAR(16);</li>
-      <li>image VARCHAR(4096);<li>
+      <li>user     VARCHAR(16);</li>
+      <li>pass     VARCHAR(16);</li>
+      <li>image    VARCHAR(4096);<li>
     </ul>
   </li>
-  <li>friends'</li>
-  <li>profile;</li>
-  <li>messages;</li>
+  <li>friends:
+    <ul>
+      <li>user     VARCHAR(16);</li>
+      <li>friend   VARCHAR(16);</li>
+    </ul>
+  </li>
+  <li>profile:
+    <ul>
+      <li>user     VARCHAR(16);</li>
+      <li>text     VARCHAR(4096);<li>
+      <li>image    VARCHAR(4096);<li>
+    </ul>
+  </li>
+  <li>messages:
+    <ul>
+      <li>id       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY;</li>
+      <li>auth     VARCHAR(16);</li>
+      <li>recip    VARCHAR(16);</li>
+      <li>pm       CHAR(1);</li>
+      <li>time     INT UNSIGNED;</li>
+      <li>message  VARCHAR(4096);</li>
+      <li>answerto VARCHAR(16);</li>
+    </ul>
+  </li>
 </ul>
+
+
+<h3 align="left">Members</h3>
+<p>In the members page, the logged in user has access to all the members registered. Each member is displayed in a table with:</p>
+<ul>
+  <li>status:
+    <ul>
+      <li>none: the user has no connection with the member;</li>
+      <li>following: the user is following the other member (the the user can see the member's posts);</li>
+      <li>followed: the user is being followed by the member (the member can see the user's posts);</li>
+      <li>mutual: there is a mutual connection between the user and the member (both can see eachother posts);<li>
+    </ul>
+  </li>
+  <li>profile picture;</li>
+  <li>user name;</li>
+  <li>actions:
+    <ul>
+      <li>if there is no connection, the user can follow the member and send messages;</li>
+      <li>if the user is following the member, the user can unfollow him and send messages;</li>
+      <li>if the user is being followed by the member, the user can follow him, drop him and send messages;</li>
+      <li>if the user has a mutual connection with the member, the user can unfollow him, drop him and send messages;</li>
+    </ul>
+  </li>
+ </ul>
+<p>It is also possible to filter the members shown in the list, by:</p>
+<ul>
+  <li>searching;</li>
+  <li>type of connection (none, following, followed or mutual);</li>
+</ul>
+<p>By clicking in the member's username, the user is redirected to the member's profile page.</p>
+  
+<h3 align="left">Friends</h3>
+<p>In the members page, the logged in user has access to all the members he is following or has a mutual connection with. Each member is displayed in the table the same way it is being done in the members page, except that in this table it is only possible to filter the users by 'following' or 'mutual'.</p>
+
+<h3 align="left">Profile</h3>
+<p>In the profile page, the user can add a picture and an about message.</p>
+
+<h3 align="left">Messages</h3>
+<p>In the messages page, the user can see all of his messages, the ones he sent or received.</p>
+<p>Since the initial message can have replies, the initial and all the replies are grouped. A user can delete his own message or messages he received. By deleting a reply, only the reply is deleted, but if a main message is deleted all the replies are too.</p>
+<p>The messages page can also only show the messages exchanged between the user and another member, by clicking in the action 'message' from the members or friends table.</p>
+
+<h3 align="left">Home</h3>
+<p>In the home page, the user can see all of his messages or messages directed to him and all public messages of the users he is following or has a mutual connection with. If the connection with a member is lost, either by unfollowing or by being dropped by the member, the messages of said member are no longer displayed in the home page. If the user had exchanged messages with that member, they can be accessed in the messages page.</p>
 
