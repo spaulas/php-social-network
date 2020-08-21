@@ -10,6 +10,8 @@ echo <<<_INIT
 <html>
   <head>
     <meta charset='utf-8'>
+    <link rel="icon" href="images/icon.svg" />
+    <link rel="apple-touch-icon" href="images/icon.svg" />
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta property='og:type' content='website'>
     <meta property='og:image' content='https://i.ibb.co/DW6bxc3/Social-Network-Image.png'>
