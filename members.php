@@ -168,7 +168,6 @@ echo "<table class='membersTable'>
 
 // go through each member to create their respective table row
 for ($j = $currentPage * $pageSize; $j < $max; $j++) {
-  var_dump($row[$j]);
   if ($row[$j][1] != '') {
     $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
   } else {
