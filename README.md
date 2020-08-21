@@ -9,7 +9,7 @@
 <img align="left" alt="php-social-network" width="100%" src="https://i.ibb.co/RhJpG21/social-Network-Banner.png" />
 &nbsp;
 
-<h3 align="center"><a href="https://php-social-network.herokuapp.com/" target="_blank">Play</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://youtube.com" target="_blank">Demo</a></h3>
+<h3 align="center"><a href="https://php-social-network.herokuapp.com/" target="_blank">Website</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://youtube.com" target="_blank">Demo</a></h3>
 <h3 align="left">Description</h3>
 
 <p>Social network implemented with PHP.</p>
@@ -47,9 +47,15 @@ $port   = 3306;
 <p>Since this project uses its own server, it is being deployed by <a href='https://dashboard.heroku.com'>Heroku</a> with the help of the database-as-service <a href='https://www.jawsdb.com/'>JawsDB</a>.</p>
 
 <h3 align="left">Database</h3>
-<p>The dabase created is rather simple, and consists of 4 tables:</p>
+<p>The database created is rather simple, and consists of 4 tables:</p>
 <ul>
-  <li>members;</li>
+  <li>members:
+    <ul>
+      <li>user  VARCHAR(16) - PRIMARY KEY;</li>
+      <li>pass  VARCHAR(16);</li>
+      <li>image VARCHAR(4096);<li>
+    </ul>
+  </li>
   <li>friends'</li>
   <li>profile;</li>
   <li>messages;</li>
