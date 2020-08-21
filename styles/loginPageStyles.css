@@ -20,6 +20,12 @@
 .ui-input-btn:hover {
   background-color: #f3afa8 !important;
   color: white !important;
+  height: 3rem !important;
+  margin: 10px;
+}
+
+.ui-input-btn:active {
+  height: 3rem !important;
 }
 
 .backHomeButton {
@@ -51,5 +57,10 @@
 @media screen and (max-width: 830px) {
   .backHomeButton {
     width: 100% !important;
+    margin-left: 0 !important;
   }
+}
+
+.ui-field-contain {
+  border: none !important;
 }

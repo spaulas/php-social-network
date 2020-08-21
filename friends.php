@@ -180,7 +180,7 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   </td>
   <td class='membersTableElem nameColumn'>
     <div class='profileRowContainer'>
-      <img class='profileTableImage' alt='' src='/images/noPicture.svg'/>
+      $profileIcon
       <div class='profileTableName' onclick=\"location.href = 'profile.php?user=" . $row[$j][0] . "';\">" . $row[$j][0] . "</div>
     </div>  
   </td>
