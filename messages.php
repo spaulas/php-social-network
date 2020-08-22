@@ -196,4 +196,4 @@ if (!$num) {
 }
 
 // add button to refresh the messages
-echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='messages.php?view=$view' \">Refresh Messages</button>";
+echo "<button class='sendMessageButton refreshMessages' onclick=\"location.href='messages.php?view=$receiver' \">Refresh Messages</button>";
