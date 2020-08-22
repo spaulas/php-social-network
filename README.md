@@ -9,7 +9,7 @@
 <img align="left" alt="php-social-network" width="100%" src="https://i.ibb.co/RhJpG21/social-Network-Banner.png" />
 &nbsp;
 
-<h3 align="center"><a href="https://php-social-network.herokuapp.com/" target="_blank">Website</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://youtube.com" target="_blank">Demo</a></h3>
+<h3 align="center"><a href="https://php-social-network.herokuapp.com/" target="_blank">Website</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://youtu.be/wySKRkSvY6s" target="_blank">Demo</a></h3>
 <h3 align="left">Description</h3>
 
 <p>Social network implemented with PHP.</p>
@@ -34,15 +34,15 @@ $port   = 3306;
 ```
 
 <h3 align="left">Tech Stack</h3>
-<img align="left" alt="PHP" height="30px" src="https://cdn.iconscout.com/icon/free/png-512/php-28-226043.png" />
-<img align="left" alt="MySQL" height="30px" src="https://www.freepnglogos.com/uploads/logo-mysql-png/logo-mysql-mysql-and-moodle-elearningworld-5.png" />
-<img align="left" alt="CSS3" height="30px" src="https://3.bp.blogspot.com/-oRSUw_TmO9o/XIb61m88fcI/AAAAAAAAIq0/vnxl2zzsXEQsnHI2fH4GjKu_ZT0urRo4wCK4BGAYYCw/s1600/icon%2Bcss%2B3.png" />
-<img align="left" alt="Javascript" height="30px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGnwhltDp6v141Wc08D17U-3zGku-gjJEgNg&usqp=CAU" />
-<img align="left" alt="Visual Studio Code" height="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png" />
-<img align="left" alt="Git" height="25px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" />
+<img align="left" alt="PHP" height="40px" src="https://cdn.iconscout.com/icon/free/png-512/php-28-226043.png" />
+<img align="left" alt="MySQL" height="40px" src="https://www.freepnglogos.com/uploads/logo-mysql-png/logo-mysql-mysql-and-moodle-elearningworld-5.png" />
+<img align="left" alt="CSS3" height="40px" src="https://3.bp.blogspot.com/-oRSUw_TmO9o/XIb61m88fcI/AAAAAAAAIq0/vnxl2zzsXEQsnHI2fH4GjKu_ZT0urRo4wCK4BGAYYCw/s1600/icon%2Bcss%2B3.png" />
+<img align="left" alt="Javascript" height="40px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGnwhltDp6v141Wc08D17U-3zGku-gjJEgNg&usqp=CAU" />
+<img align="left" alt="Visual Studio Code" height="40px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png" />
+<img align="left" alt="Git" height="35px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" />
 <br/>
 
-
+<br />
 <h3 align="left">Deployment</h3>
 <p>Since this project uses its own server, it is being deployed by <a href='https://dashboard.heroku.com'>Heroku</a> with the help of the database-as-service <a href='https://www.jawsdb.com/'>JawsDB</a>.</p>
 
@@ -82,8 +82,17 @@ $port   = 3306;
   </li>
 </ul>
 
+<p align="center">
+  <img alt="membersTable" width="100px" src="https://i.ibb.co/9r1HZ8P/members-Table.png" />&nbsp;&nbsp;
+  <img alt="friendsTable" width="100px" src="https://i.ibb.co/wSZKTBZ/friends-Table.png" />&nbsp;&nbsp;
+  <img alt="profileTable" width="100px" src="https://i.ibb.co/0YPjMzX/profiles-Table.png" />&nbsp;&nbsp;
+  <img alt="messagesTable" width="100px" src="https://i.ibb.co/0Fr9KFR/messages-Table.png" />&nbsp;&nbsp;
+</p>
 
-<h3 align="left">Members</h3>
+<h3 align='left'>Pages</h3>
+<img alt="pagesNavBar" src="https://i.ibb.co/YR7cT01/navBar.png" />
+
+<h4 align="left">Members</h4>
 <p>In the members page, the logged in user has access to all the members registered. Each member is displayed in a table with:</p>
 <ul>
   <li>status:
@@ -105,24 +114,36 @@ $port   = 3306;
     </ul>
   </li>
  </ul>
+ 
+<img alt="membersPage" src="https://i.ibb.co/qRjn9ZY/table.png" />
+ 
 <p>It is also possible to filter the members shown in the list, by:</p>
 <ul>
   <li>searching;</li>
   <li>type of connection (none, following, followed or mutual);</li>
 </ul>
+
+<p align="center">
+  <img alt="tableFilters" src="https://i.ibb.co/LZLsVYw/filters.png" />
+</p>
+
 <p>By clicking in the member's username, the user is redirected to the member's profile page.</p>
   
-<h3 align="left">Friends</h3>
+<h4 align="left">Friends</h4>
 <p>In the members page, the logged in user has access to all the members he is following or has a mutual connection with. Each member is displayed in the table the same way it is being done in the members page, except that in this table it is only possible to filter the users by 'following' or 'mutual'.</p>
 
-<h3 align="left">Profile</h3>
+<h4 align="left">Profile</h4>
 <p>In the profile page, the user can add a picture and an about message.</p>
+<img alt="profilePage" src="https://i.ibb.co/PFK8kyt/profile-Page.png" />
 
-<h3 align="left">Messages</h3>
+<h4 align="left">Messages</h4>
 <p>In the messages page, the user can see all of his messages, the ones he sent or received.</p>
 <p>Since the initial message can have replies, the initial and all the replies are grouped. A user can delete his own message or messages he received. By deleting a reply, only the reply is deleted, but if a main message is deleted all the replies are too.</p>
 <p>The messages page can also only show the messages exchanged between the user and another member, by clicking in the action 'message' from the members or friends table.</p>
 
-<h3 align="left">Home</h3>
+<img alt="messagesPage" src="https://i.ibb.co/Lvf56Qm/messages-PAge.png" />
+
+<h4 align="left">Home</h4>
 <p>In the home page, the user can see all of his messages or messages directed to him and all public messages of the users he is following or has a mutual connection with. If the connection with a member is lost, either by unfollowing or by being dropped by the member, the messages of said member are no longer displayed in the home page. If the user had exchanged messages with that member, they can be accessed in the messages page.</p>
 
+<img alt="messagesPage" src="https://i.ibb.co/12tMxnH/homePage.png" />
