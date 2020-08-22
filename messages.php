@@ -183,7 +183,7 @@ if (!$num) {
       // print each reply
       for ($l = 0; $l < $nAnswers; ++$l) {
         $answersRow = $answerMessages->fetch_array(MYSQLI_ASSOC);
-        echo printOldMessage(false, $answersRow['auth'], $answersRow['recip'], $$row['pm'], $answersRow['time'], $answersRow['message'], $answersRow['id']);
+        echo printOldMessage(false, $answersRow['auth'], $answersRow['recip'], $row['pm'], $answersRow['time'], $answersRow['message'], $answersRow['id']);
       }
     }
 
