@@ -21,7 +21,7 @@ $filter = "";       // filter by value
 
 
 // POST AND DELETE REQUESTS ------------------------------------------------------------------------------
-// follow
+// unfollow
 // remove member selected of the current user's following list
 if (isset($_GET['remove'])) {
   $remove = clearString($_GET['remove']);

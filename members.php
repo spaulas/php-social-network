@@ -24,7 +24,7 @@ $filter = "";       // filter by value
 // add member selected to the current user's following list
 if (isset($_GET['add'])) {
   $add = clearString($_GET['add']);
-  $result = queryMysql("SELECT * FROM friends WHERE user='$add' AND friend='$user'");
+  $result = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='$add'");
   if (!$result->num_rows)
     queryMysql("INSERT INTO friends VALUES ('$user', '$add')");
 }
