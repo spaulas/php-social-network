@@ -1,10 +1,9 @@
 <h1 align="center">PHP Social Network</h1>
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/spaulas/solitaireGame?logo=typescript&style=for-the-badge">
-  <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/spaulas/react-solitaire?style=for-the-badge">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/spaulas/solitaireGame?style=for-the-badge">
-  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/spaulas/solitaireGame?style=for-the-badge">
-  <img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/spaulas/solitaireGame?style=for-the-badge">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/spaulas/php-social-network?logo=php&style=for-the-badge">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/spaulas/php-social-network?style=for-the-badge">
+  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/spaulas/php-social-network?style=for-the-badge">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/spaulas/php-social-network?style=for-the-badge">
 </p>
 <img align="left" alt="php-social-network" width="100%" src="https://i.ibb.co/RhJpG21/social-Network-Banner.png" />
 &nbsp;
