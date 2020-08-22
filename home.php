@@ -54,7 +54,7 @@ if (isset($_GET['erase'])) {
 // GET ELEMENTS REQUESTS ------------------------------------------------------------------------------
 
 // get all the user's previous main messages (all the messages he authored and the messages he received)
-$query  = "(SELECT id, auth, recip, pm, time, message, answerto FROM messages INNER JOIN friends ON messages.auth = friends.user WHERE friends.user = '$user' AND messages.pm='0' AND messages.answerto IS NULL) UNION (SELECT * FROM messages WHERE auth='$user' AND messages.pm='0' AND messages.answerto IS NULL) ORDER BY time DESC";
+$query  = "(SELECT id, auth, recip, pm, time, message, answerto FROM messages INNER JOIN friends ON messages.auth = friends.friend WHERE friends.user = '$user' AND messages.pm='0' AND messages.answerto IS NULL) UNION (SELECT * FROM messages WHERE auth='$user' AND messages.pm='0' AND messages.answerto IS NULL) ORDER BY time DESC";
 $mainMessages = queryMysql($query);
 // get the number of results found
 $num    = $mainMessages->num_rows;
