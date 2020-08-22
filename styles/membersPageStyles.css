@@ -1,6 +1,6 @@
 .membersTable {
   width: 100%;
-  background-color: #f3afa8;
+  background-color: #ec8074;
 }
 
 .membersTableHeaderTitle {
@@ -27,7 +27,7 @@
   font-size: 1.2rem !important;
   height: 40px;
   background-color: white;
-  color: #f3afa8;
+  color: #ec8074;
   font-weight: bold;
   transition: 0.5s;
 }
@@ -45,14 +45,14 @@
 .actionsButton {
   width: 30% !important;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 1px solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 1px solid #ec8074 !important;
   font-weight: 200;
   word-break: break-all;
 }
 
 .actionsButton:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 
@@ -117,14 +117,14 @@
   line-height: 12px;
   font-size: 14px;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 1px solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 1px solid #ec8074 !important;
   font-weight: 200;
   margin: 10px;
 }
 
 .searchButton:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .filterOption:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
 }
 
 .paginationContainer {
@@ -156,20 +156,20 @@
   width: 30px;
   padding: 5px;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 1px solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 1px solid #ec8074 !important;
   font-weight: 200;
   margin: 10px 2px;
   font-size: 14px;
 }
 
 .paginationButton:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 
 .selectedPage {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 
@@ -187,10 +187,10 @@
 .emptyTableInfo {
   width: 100%;
   background-color: white;
-  color: #f3afa8;
+  color: #ec8074;
   font-size: 1.2rem !important;
   text-align: center;
-  border: 1px solid #f3afa8 !important;
+  border: 1px solid #ec8074 !important;
 }
 
 @media screen and (max-width: 830px) {

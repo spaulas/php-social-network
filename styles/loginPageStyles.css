@@ -13,12 +13,12 @@
   height: 3rem;
   margin: 10px;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 1px solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 1px solid #ec8074 !important;
 }
 
 .ui-input-btn:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
   height: 3rem !important;
   margin: 10px;
@@ -33,12 +33,12 @@
   float: right;
   height: 3rem;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 1px solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 1px solid #ec8074 !important;
 }
 
 .backHomeButton:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 

@@ -82,14 +82,14 @@
   width: 80% !important;
   height: 3rem !important;
   background-color: white !important;
-  color: #f3afa8 !important;
-  border: 0.1rem solid #f3afa8 !important;
+  color: #ec8074 !important;
+  border: 0.1rem solid #ec8074 !important;
   margin-top: 1rem;
   font-size: 1em;
 }
 
 .sendMessageButton:hover {
-  background-color: #f3afa8 !important;
+  background-color: #ec8074 !important;
   color: white !important;
 }
 
@@ -121,7 +121,7 @@
   width: calc(80% - 4rem) !important;
   margin-left: 10% !important;
   margin-bottom: 0.5rem;
-  border: 0.1rem solid #f3afa8 !important;
+  border: 0.1rem solid #ec8074 !important;
   border-radius: 0.3125em;
   padding: 1rem 3rem 1rem 1rem;
   color: grey !important;
