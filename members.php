@@ -2,55 +2,55 @@
 
 require_once "components/header.php";
 
+// if the user is not logged in then show the message and die
 if (!$loggedin) {
-  die("<div class='formContainer'>
-  <h2 class='resultMessage'>
-    You have been logged out.
-  </h2>
-  <button class='backHomeButton backHomeButtonResultMessage' onclick=\"document.location.href='/'\">
-    Home
-  </button>
-  </div>
-  </div></body></html>");
+  include_once("components/loggedOutMessage.php");
+  die();
 }
 
-// pagination variables
-$currentPage = 0;
-$finalIndex = 2;
-$nPages = 1;
-$pageSize = 10;
+// TABLE VARIABLES ------------------------------------------------------------------------------
+// pagination
+$currentPage = 0;   // current page index being displayed
+$finalIndex = 1;    // index of the final element to be shown
+$nPages = 1;        // total number of pages
+$pageSize = 10;     // number of elements per page
 // search
-$search = "";
+$search = "";       // search value
 // filter
-$filter = "";
-$inputValue = "";
+$filter = "";       // filter by value
 
+// POST AND DELETE REQUESTS ------------------------------------------------------------------------------
 // follow
+// add member selected to the current user's following list
 if (isset($_GET['add'])) {
   $add = clearString($_GET['add']);
   $result = queryMysql("SELECT * FROM friends WHERE user='$add' AND friend='$user'");
   if (!$result->num_rows)
-    queryMysql("INSERT INTO friends VALUES ('$add', '$user')");
+    queryMysql("INSERT INTO friends VALUES ('$user', '$add')");
 }
 // unfollow
+// remove member selected of the current user's following list
 elseif (isset($_GET['remove'])) {
   $remove = clearString($_GET['remove']);
-  queryMysql("DELETE FROM friends WHERE user='$remove' AND friend='$user'");
-}
-// drop
-elseif (isset($_GET['drop'])) {
-  $remove = clearString($_GET['drop']);
   queryMysql("DELETE FROM friends WHERE user='$user' AND friend='$remove'");
 }
-// search
+// drop
+// remove the current user from the selected member's following list
+elseif (isset($_GET['drop'])) {
+  $remove = clearString($_GET['drop']);
+  queryMysql("DELETE FROM friends WHERE user='$remove' AND friend='$user'");
+}
+
+// GET REQUESTS ------------------------------------------------------------------------------
+// save search value
 if (isset($_GET['search'])) {
   $search = $_GET['search'];
 }
-// filter
+// save filter value
 if (isset($_GET['filter'])) {
   $filter = $_GET['filter'];
 }
-// page
+// save current page and final index
 if (isset($_GET['page'])) {
   $page =  $_GET['page'];
   if ($page >= 0) {
@@ -59,6 +59,9 @@ if (isset($_GET['page'])) {
   }
 }
 
+// CREATE ACTIONS BUTTONS ------------------------------------------------------------------------------
+// returns the actions available to a member that the user has no connection with
+// actions: 'message' and 'follow'
 function noneAction($rowUser)
 {
   global $currentPage;
@@ -70,6 +73,8 @@ function noneAction($rowUser)
   </div>";
 }
 
+// returns the actions available to a member that the user is following
+// actions: 'message' and 'unfollow'
 function followingAction($rowUser)
 {
   global $currentPage;
@@ -81,6 +86,8 @@ function followingAction($rowUser)
   </div>";
 }
 
+// returns the actions available to a member that if following the user
+// actions: 'message', 'follow' and 'drop'
 function followingYouAction($rowUser)
 {
   global $currentPage;
@@ -93,6 +100,8 @@ function followingYouAction($rowUser)
   </div>";
 }
 
+// returns the actions available to a member that the user has a mutual connection with
+// actions: 'message', 'unfollow' and 'drop'
 function mutualAction($rowUser)
 {
   global $currentPage;
@@ -100,47 +109,57 @@ function mutualAction($rowUser)
   global $filter;
   return "<div class='actionsContainer'>
     <button class='actionsButton' onclick=\"document.location.href='messages.php?view=" . $rowUser . "'\">Message</button>
-    <button class='actionsButton' onclick=\"document.location.href='members.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
-    <button class='actionsButton' onclick=\"document.location.href='members.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
+    <button class='actionsButton' onclick=\"document.location.href='members.php?remove=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Unfollow</button>
+    <button class='actionsButton' onclick=\"document.location.href='members.php?drop=" . $rowUser . "&page=" . $currentPage . "&search=" . $search . "&filter=" . $filter . "'\">Drop</button>
   </div>";
 }
 
+// CREATE CONNECTION ICONS ------------------------------------------------------------------------------
 
-// type of icons according to the connection between the users
-$followingIcon = "<div class='tooltip'>
-  <img class='statusIcons' alt='following' src='/images/following.svg'/>
-  <span class='tooltiptext'>Following</span>
-</div>";
-
-$followingYouIcon = "<div class='tooltip'>
-  <img class='statusIcons' alt='following' src='/images/followingYou.svg'/>
-  <span class='tooltiptext'>Following you</span>
-</div>";
-
-$mutualIcon = "<div class='tooltip'>
-  <img class='statusIcons' alt='following' src='/images/mutual.svg'/>
-  <span class='tooltiptext'>Mutual Connection</span>
-</div>";
-
+// None Icon
 $noneIcon = "<div class='tooltip'>
   <img class='statusIcons' alt='following' src='/images/none.svg'/>
   <span class='tooltiptext'>No Connection</span>
 </div>";
 
+// Following Icon
+$followingIcon = "<div class='tooltip'>
+  <img class='statusIcons' alt='following' src='/images/following.svg'/>
+  <span class='tooltiptext'>Following</span>
+</div>";
+
+// Following You Icon
+$followingYouIcon = "<div class='tooltip'>
+  <img class='statusIcons' alt='following' src='/images/followingYou.svg'/>
+  <span class='tooltiptext'>Following you</span>
+</div>";
+
+// Mutual Icon
+$mutualIcon = "<div class='tooltip'>
+  <img class='statusIcons' alt='following' src='/images/mutual.svg'/>
+  <span class='tooltiptext'>Mutual Connection</span>
+</div>";
+
+// GET ELEMENTS REQUESTS ------------------------------------------------------------------------------
 $result;
 
+// the request to be done depends on the type of connection choosen in the filter
 switch ($filter) {
   case "none":
+    // get all members that have no connection in the friends table
     $result = queryMysql("SELECT members.user, members.image FROM members WHERE members.user NOT IN (SELECT friends.user FROM friends WHERE friends.friend = '$user') AND members.user NOT IN (SELECT friends.friend FROM friends WHERE friends.user = '$user') AND members.user LIKE '%$search'");
     break;
   case "following":
+    // get all members the user has as friend but the members don't have as friends in the friends table
+    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user') AND members.user LIKE '%$search%'");
+    break;
+  case "followingYou":
+    // get all members the user does not have as friend but the members have as friends in the friends table
     $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user'
     ) AND members.user LIKE '%$search%'");
     break;
-  case "followingYou":
-    $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user' AND members.user NOT IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user') AND members.user LIKE '%$search%'");
-    break;
   case "mutual":
+    // get all members the user has as friend and the members have as friends as well in the friends table
     $result = queryMysql("SELECT members.user, members.image FROM members INNER JOIN friends ON members.user=friends.friend WHERE friends.user = '$user' AND members.user IN (SELECT members.user FROM members INNER JOIN friends ON members.user=friends.user WHERE friends.friend = '$user') AND members.user LIKE '%$search%'");
     break;
   default:
@@ -149,12 +168,16 @@ switch ($filter) {
 }
 // get the list of all the members
 $num    = $result->num_rows;
+// the number of pages available is the total number of members divided by the max number of members per page
 $nPages  = ceil($num / $pageSize);
+// if in the last page, the members don't fill all the spots, then return the index of the last member
 $max    = $num > $finalIndex ? $finalIndex : $num;
-
+// get all the info in an array
 $row = $result->fetch_all();
 
-// print table with headers
+// PRINT TABLE ------------------------------------------------------------------------------
+
+// print table with headers (status, name and action)
 echo "<table class='membersTable'>
     <thead>
       <tr>
@@ -167,13 +190,17 @@ echo "<table class='membersTable'>
 
 // go through each member to create their respective table row
 for ($j = $currentPage * $pageSize; $j < $max; $j++) {
-  var_dump($row[$j]);
+  // check if the member has a profile picture
+  // if yes, then put it inside an img tag
   if ($row[$j][1] != '') {
     $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
-  } else {
+  }
+  // if no, render the default image
+  else {
     $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
   }
 
+  // if the row is the current user, then print without the status and actions columns and skip the rest of the loop
   if ($row[$j][0] == $user) {
     echo "<tr class='membersTableRow'>
       <td class='membersTableElem statusColumn'/>
@@ -195,20 +222,21 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row[$j][0] . "'");
   $t2      = $result1->num_rows;
 
-  // get the final result of the connection
+  // get the final result of the connection and actions
   $connectionIcon = $noneIcon;
   $connectionAction = noneAction($row[$j][0]);
   if (($t1 + $t2) > 1) {
     $connectionIcon = $mutualIcon;
     $connectionAction = mutualAction($row[$j][0]);
   } elseif ($t1) {
-    $connectionIcon = $followingIcon;
-    $connectionAction = followingAction($row[$j][0]);
-  } elseif ($t2) {
     $connectionIcon = $followingYouIcon;
     $connectionAction = followingYouAction($row[$j][0]);
+  } elseif ($t2) {
+    $connectionIcon = $followingIcon;
+    $connectionAction = followingAction($row[$j][0]);
   }
 
+  // print the status, name and actions columns
   echo "<tr class='membersTableRow'>
   <td class='membersTableElem statusColumn'>
     $connectionIcon
@@ -223,7 +251,9 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
 </tr>";
 }
 
+// PRINT TABLE OPTIONS ------------------------------------------------------------------------------
 
+// check which filter is selected and add the 'selectedPage' classname (to highlight the applied filter)
 $selectedNone = $filter == 'none' ? 'selectedPage' : '';
 $selectedFollowing = $filter == 'following' ? 'selectedPage' : '';
 $selectedFollowingYou = $filter == 'followingYou' ? 'selectedPage' : '';
@@ -252,9 +282,8 @@ echo "</tbody></table>
         <img class='filterOption' alt='clear' src='/images/clear.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter='\" />
         <span class='tooltiptext'>Clear</span>
       </div>
-    </div>";
-
-echo "<div class='filtersContainer'>
+    </div>
+    <div class='filtersContainer'>
         <form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
           <input value='$search' type='text' name='search' id='search' class='searchInput' />
           <button class='searchButton' type='submit'>
@@ -274,7 +303,7 @@ for ($p = 0; $p < $nPages; $p++) {
   $selectedStyle = $currentPage == $p ? "selectedPage" : "";
   echo "<button class='paginationButton $selectedStyle' onclick=\"document.location.href='members.php?page=" . $p . "&search=" . $search . "&filter=" . $filter . "'\">" . ($p + 1) . "</button>";
 }
-// link to the next pages
+// link to the next page
 $nextLink = $currentPage < $nPages ? "document.location.href='members.php?page=" . ($currentPage + 1) . "&search=" . $search . "&filter=" . $filter . "'" : null;
 echo "<button class='paginationButton'>
         >
