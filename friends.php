@@ -213,11 +213,11 @@ if ($num > 0) {
   }
   echo "</tbody></table>";
 } else {
-  echo "</tbody>
-          <div class='emptyTableInfo'>
-            No data
-          </div></table>";
-}
+    echo "</tbody></table>
+            <div class='emptyTableInfo'>
+              No data
+            </div>";
+  }
 
 // PRINT TABLE OPTIONS ------------------------------------------------------------------------------
 

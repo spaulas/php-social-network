@@ -15,6 +15,11 @@ html {
 .ui-page {
   overflow-y: hidden !important;
 }
+@media screen and (max-width: 830px) {
+  .ui-page {
+    overflow-y: auto !important;
+  }
+}
 
 .taken,
 .error {
