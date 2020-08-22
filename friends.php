@@ -148,21 +148,23 @@ echo "<table class='membersTable'>
     </thead>
     <tbody>";
 
-// go through each member to create their respective table row
-for ($j = $currentPage * $pageSize; $j < $max; $j++) {
-  // check if the member has a profile picture
-  // if yes, then put it inside an img tag
-  if ($row[$j][1] != '') {
-    $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
-  }
-  // if no, render the default image
-  else {
-    $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
-  }
-  
-  // if the row is the current user, then print without the status and actions columns and skip the rest of the loop
-  if ($row[$j][0] == $user) {
-    echo "<tr class='membersTableRow'>
+
+if ($num > 0) {
+  // go through each member to create their respective table row
+  for ($j = $currentPage * $pageSize; $j < $max; $j++) {
+    // check if the member has a profile picture
+    // if yes, then put it inside an img tag
+    if ($row[$j][1] != '') {
+      $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
+    }
+    // if no, render the default image
+    else {
+      $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
+    }
+
+    // if the row is the current user, then print without the status and actions columns and skip the rest of the loop
+    if ($row[$j][0] == $user) {
+      echo "<tr class='membersTableRow'>
       <td class='membersTableElem statusColumn'/>
       <td class='membersTableElem nameColumn'>
         <div class='profileRowContainer'>
@@ -172,31 +174,31 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
       </td>
       <td class='membersTableElem actionColumn'/>
     </tr>";
-    continue;
-  }
+      continue;
+    }
 
-  // check connections between current user to the member
-  $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row[$j][0] . "' AND friend='$user'");
-  $t1      = $result1->num_rows;
-  // check connections between the member and the current user
-  $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row[$j][0] . "'");
-  $t2      = $result1->num_rows;
+    // check connections between current user to the member
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row[$j][0] . "' AND friend='$user'");
+    $t1      = $result1->num_rows;
+    // check connections between the member and the current user
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row[$j][0] . "'");
+    $t2      = $result1->num_rows;
 
-  // get the final result of the connection
-  $connectionIcon = null;
-  $connectionAction = null;
-  if (($t1 + $t2) > 1) {
-    $connectionIcon = $mutualIcon;
-    $connectionAction = mutualAction($row[$j][0]);
-  } elseif ($t2) {
-    $connectionIcon = $followingIcon;
-    $connectionAction = followingAction($row[$j][0]);
-  } else {
-    continue;
-  }
+    // get the final result of the connection
+    $connectionIcon = null;
+    $connectionAction = null;
+    if (($t1 + $t2) > 1) {
+      $connectionIcon = $mutualIcon;
+      $connectionAction = mutualAction($row[$j][0]);
+    } elseif ($t2) {
+      $connectionIcon = $followingIcon;
+      $connectionAction = followingAction($row[$j][0]);
+    } else {
+      continue;
+    }
 
-  // print the status, name and actions columns
-  echo "<tr class='membersTableRow'>
+    // print the status, name and actions columns
+    echo "<tr class='membersTableRow'>
   <td class='membersTableElem statusColumn'>
     $connectionIcon
   </td>
@@ -208,6 +210,13 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   </td>
   <td class='membersTableElem actionColumn'>$connectionAction</td>
 </tr>";
+  }
+  echo "</tbody></table>";
+} else {
+  echo "<div class='emptyTableInfo'>
+          No data
+        </div>
+  </tbody></table>";
 }
 
 // PRINT TABLE OPTIONS ------------------------------------------------------------------------------

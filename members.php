@@ -188,21 +188,22 @@ echo "<table class='membersTable'>
     </thead>
     <tbody>";
 
-// go through each member to create their respective table row
-for ($j = $currentPage * $pageSize; $j < $max; $j++) {
-  // check if the member has a profile picture
-  // if yes, then put it inside an img tag
-  if ($row[$j][1] != '') {
-    $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
-  }
-  // if no, render the default image
-  else {
-    $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
-  }
+if ($num > 0) {
+  // go through each member to create their respective table row
+  for ($j = $currentPage * $pageSize; $j < $max; $j++) {
+    // check if the member has a profile picture
+    // if yes, then put it inside an img tag
+    if ($row[$j][1] != '') {
+      $profileIcon = "<img class='profileTableImage' alt='' src='" . $row[$j][1] . "'/>";
+    }
+    // if no, render the default image
+    else {
+      $profileIcon = "<img class='profileTableImage' alt='' src='/images/noPicture.svg'/>";
+    }
 
-  // if the row is the current user, then print without the status and actions columns and skip the rest of the loop
-  if ($row[$j][0] == $user) {
-    echo "<tr class='membersTableRow'>
+    // if the row is the current user, then print without the status and actions columns and skip the rest of the loop
+    if ($row[$j][0] == $user) {
+      echo "<tr class='membersTableRow'>
       <td class='membersTableElem statusColumn'/>
       <td class='membersTableElem nameColumn'>
         <div class='profileRowContainer'>
@@ -212,32 +213,32 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
       </td>
       <td class='membersTableElem actionColumn'/>
     </tr>";
-    continue;
-  }
+      continue;
+    }
 
-  // check connections between current user to the member
-  $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row[$j][0] . "' AND friend='$user'");
-  $t1      = $result1->num_rows;
-  // check connections between the member and the current user
-  $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row[$j][0] . "'");
-  $t2      = $result1->num_rows;
+    // check connections between current user to the member
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='" . $row[$j][0] . "' AND friend='$user'");
+    $t1      = $result1->num_rows;
+    // check connections between the member and the current user
+    $result1 = queryMysql("SELECT * FROM friends WHERE user='$user' AND friend='" . $row[$j][0] . "'");
+    $t2      = $result1->num_rows;
 
-  // get the final result of the connection and actions
-  $connectionIcon = $noneIcon;
-  $connectionAction = noneAction($row[$j][0]);
-  if (($t1 + $t2) > 1) {
-    $connectionIcon = $mutualIcon;
-    $connectionAction = mutualAction($row[$j][0]);
-  } elseif ($t1) {
-    $connectionIcon = $followingYouIcon;
-    $connectionAction = followingYouAction($row[$j][0]);
-  } elseif ($t2) {
-    $connectionIcon = $followingIcon;
-    $connectionAction = followingAction($row[$j][0]);
-  }
+    // get the final result of the connection and actions
+    $connectionIcon = $noneIcon;
+    $connectionAction = noneAction($row[$j][0]);
+    if (($t1 + $t2) > 1) {
+      $connectionIcon = $mutualIcon;
+      $connectionAction = mutualAction($row[$j][0]);
+    } elseif ($t1) {
+      $connectionIcon = $followingYouIcon;
+      $connectionAction = followingYouAction($row[$j][0]);
+    } elseif ($t2) {
+      $connectionIcon = $followingIcon;
+      $connectionAction = followingAction($row[$j][0]);
+    }
 
-  // print the status, name and actions columns
-  echo "<tr class='membersTableRow'>
+    // print the status, name and actions columns
+    echo "<tr class='membersTableRow'>
   <td class='membersTableElem statusColumn'>
     $connectionIcon
   </td>
@@ -249,6 +250,13 @@ for ($j = $currentPage * $pageSize; $j < $max; $j++) {
   </td>
   <td class='membersTableElem actionColumn'>$connectionAction</td>
 </tr>";
+  }
+  echo "</tbody></table>";
+} else {
+  echo "<div class='emptyTableInfo'>
+          No data
+        </div>
+  </tbody></table>";
 }
 
 // PRINT TABLE OPTIONS ------------------------------------------------------------------------------
@@ -259,38 +267,37 @@ $selectedFollowing = $filter == 'following' ? 'selectedPage' : '';
 $selectedFollowingYou = $filter == 'followingYou' ? 'selectedPage' : '';
 $selectedMutual = $filter == 'mutual' ? 'selectedPage' : '';
 
-echo "</tbody></table>
-  <div class='optionsContainer'>
-    <div class='filtersContainer'>
-      <div class='tooltip'>
-        <img class='filterOption $selectedNone' alt='none' src='/images/none.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=none'\" />
-        <span class='tooltiptext'>No Connection</span>
-      </div>
-      <div class='tooltip'>
-        <img class='filterOption $selectedFollowing' alt='following' src='/images/following.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=following'\" />
-        <span class='tooltiptext'>Following</span>
-      </div>
-      <div class='tooltip'>
-        <img class='filterOption $selectedFollowingYou' alt='following' src='/images/followingYou.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=followingYou'\" />
-        <span class='tooltiptext'>Following you</span>
-      </div>
-      <div class='tooltip'>
-        <img class='filterOption $selectedMutual' alt='following' src='/images/mutual.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=mutual'\" />
-        <span class='tooltiptext'>Mutual Connection</span>
-      </div>
-      <div class='tooltip'>
-        <img class='filterOption' alt='clear' src='/images/clear.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter='\" />
-        <span class='tooltiptext'>Clear</span>
-      </div>
-    </div>
-    <div class='filtersContainer'>
-        <form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
-          <input value='$search' type='text' name='search' id='search' class='searchInput' />
-          <button class='searchButton' type='submit'>
-            Search
-          </button>
-        </form>
-      </div>";
+echo "<div class='optionsContainer'>
+        <div class='filtersContainer'>
+          <div class='tooltip'>
+            <img class='filterOption $selectedNone' alt='none' src='/images/none.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=none'\" />
+            <span class='tooltiptext'>No Connection</span>
+          </div>
+          <div class='tooltip'>
+            <img class='filterOption $selectedFollowing' alt='following' src='/images/following.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=following'\" />
+            <span class='tooltiptext'>Following</span>
+          </div>
+          <div class='tooltip'>
+            <img class='filterOption $selectedFollowingYou' alt='following' src='/images/followingYou.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=followingYou'\" />
+            <span class='tooltiptext'>Following you</span>
+          </div>
+          <div class='tooltip'>
+            <img class='filterOption $selectedMutual' alt='following' src='/images/mutual.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter=mutual'\" />
+            <span class='tooltiptext'>Mutual Connection</span>
+          </div>
+          <div class='tooltip'>
+            <img class='filterOption' alt='clear' src='/images/clear.svg' onclick=\"document.location.href='members.php?page=" . $currentPage . "&search=" . $search . "&filter='\" />
+            <span class='tooltiptext'>Clear</span>
+          </div>
+        </div>
+        <div class='filtersContainer'>
+            <form class='searchForm' action='members.php?page=" . $currentPage . "&filter=" . $filter . "' method='get'>
+              <input value='$search' type='text' name='search' id='search' class='searchInput' />
+              <button class='searchButton' type='submit'>
+                Search
+              </button>
+            </form>
+          </div>";
 
 // link to the previous page
 $backLink = $currentPage > 0 ? "document.location.href='members.php?page=" . ($currentPage - 1) . "&search=" . $search . "&filter=" . $filter . "'" : null;
