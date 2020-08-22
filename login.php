@@ -6,21 +6,29 @@ require_once 'functions.php';
 $error = $user = $pass = "";
 
 if (isset($_POST['user'])) {
+  // get the username and password
   $user = clearString($_POST['user']);
   $pass = clearString($_POST['pass']);
 
+  // if any is empty, then show error message
   if ($user == "" || $pass == "")
     $error = 'Not all fields were entered';
   else {
+    // get the user that is trying to login
     $result = queryMySQL("SELECT user,pass FROM members
         WHERE user='$user' AND pass='$pass'");
 
+    // if the user does not exist or the password is incorrect, show error message
     if ($result->num_rows == 0) {
       $error = "Invalid login attempt";
-    } else {
+    } 
+    // if the login was successful
+    else {
+      // start the session
       $_SESSION['user'] = $user;
       $_SESSION['pass'] = $pass;
 
+      // show message to user with a redirect button to the home page 
       die("<div class='formContainer'>
             <h2 class='resultMessage'>
               You are now logged in.
@@ -34,6 +42,7 @@ if (isset($_POST['user'])) {
   }
 }
 
+// print the login form
 echo <<<_FORM
 <div class='formContainer'>
   <form method='post' action='login.php'>

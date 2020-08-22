@@ -1,6 +1,7 @@
-<?php // Example 27-6: checkuser.php
+<?php
   require_once 'functions.php';
 
+  // check if the username already exists (for the sign up form)
   if (isset($_POST['user']))
   {
     $user   = clearString($_POST['user']);
@@ -13,4 +14,3 @@
       echo "<span class='available'>&nbsp;&#x2714; " .
            "The username '$user' is available</span>";
   }
-?>
