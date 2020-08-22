@@ -30,7 +30,7 @@ if (isset($_POST['text'])) {
     }
     // insert the message in the messages table
     queryMysql("INSERT INTO messages VALUES (NULL, '$user',
-        '$$user', '$pm', $time, '$text', $reply)");
+        '$user', '$pm', $time, '$text', $reply)");
   }
 }
 
